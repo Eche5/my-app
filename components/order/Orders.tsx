@@ -54,8 +54,8 @@ function Orders() {
             <thead>
               <tr className="bg-[#1E3A8A] text-white">
                 <th className="px-6 py-4 font-medium">Order ID</th>
-                <th className="px-6 py-4 font-medium">TotalAmount</th>
                 <th className="px-6 py-4 font-medium">Order Date</th>
+                <th className="px-6 py-4 font-medium">TotalAmount</th>
               </tr>
             </thead>
             <tbody className="max-h-[70vh] h-[70vh] overflow-auto">
