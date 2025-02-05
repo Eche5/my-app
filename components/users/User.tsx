@@ -51,69 +51,78 @@ function User() {
     }
   };
 
-  console.log(errMsg);
+  if (users?.customers?.length === 0) {
+    return <p>Loading...</p>;
+  }
   return (
     <div>
       <Link className=" text-[28px] font-bold" href="/">
         Home
       </Link>
-
-      <div className=" flex justify-between p-8">
-        <form
-          className=" flex flex-col items-center gap-4 bg-slate-300 border-[1px] border-black drop-shadow-2xl p-8 "
-          onSubmit={onHandleSubmit}
-        >
-          <p className=" text-red-600">{errMsg !== "" ? errMsg : ""}</p>
-          <div className=" flex flex-col gap-2">
-            <label>Name</label>
-            <input
-              placeholder="Enter CUstomer's Name"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-
-          <div className=" flex flex-col gap-2">
-            <label>Email</label>
-            <input
-              placeholder="Email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className=" bg-blue-950 disabled:bg-gray-500 text-white w-[150px] h-[32px] flex justify-center items-center rounded-md"
-          >
-            Create Customer
-          </button>
-        </form>
-
-        <p>{users?.customers?.length} users</p>
-      </div>
-      <div className="w-full max-w-6xl overflow-x-auto bg-white shadow-md rounded-b-md">
+      <div className=" flex justify-center items-center">
         {" "}
-        <table className="min-w-full table-auto text-sm text-left">
-          <thead>
-            <tr className="bg-[#1E3A8A] text-white">
-              <th className="px-6 py-4 font-medium">Customer ID</th>
-              <th className="px-6 py-4 font-medium">Customer Name </th>
-              <th className="px-6 py-4 font-medium">Numbers of Orders</th>
-            </tr>
-          </thead>
-          <tbody className="max-h-[70vh] h-[70vh] overflow-auto">
-            {users?.customers?.map((user: Customer) => {
-              return (
-                <tr key={user?.customerId}>
-                  <td className="px-6 py-4 border-b">{user?.customerId}</td>
-                  <td className="px-6 py-4 border-b">{user?.customerName}</td>
-                  <td className="px-6 py-4 border-b">{user?.numberOfOrders}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className=" flex justify-between w-full max-w-6xl p-8">
+          <form
+            className=" flex flex-col items-center gap-4 bg-slate-300 border-[1px] border-black drop-shadow-2xl p-8 "
+            onSubmit={onHandleSubmit}
+          >
+            <p className=" text-red-600">{errMsg !== "" ? errMsg : ""}</p>
+            <div className=" flex flex-col gap-2">
+              <label>Name</label>
+              <input
+                placeholder="Enter CUstomer's Name"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className=" flex flex-col gap-2">
+              <label>Email</label>
+              <input
+                placeholder="Email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className=" bg-blue-950 disabled:bg-gray-500 text-white w-[150px] h-[32px] flex justify-center items-center rounded-md"
+            >
+              Create Customer
+            </button>
+          </form>
+
+          <p>{users?.customers?.length} users</p>
+        </div>
+      </div>
+
+      <div className=" flex justify-center items-center">
+        {" "}
+        <div className="w-full max-w-6xl overflow-x-auto bg-white shadow-md rounded-b-md">
+          <table className="min-w-full table-auto text-sm text-left">
+            <thead>
+              <tr className="bg-[#1E3A8A] text-white">
+                <th className="px-6 py-4 font-medium">Customer ID</th>
+                <th className="px-6 py-4 font-medium">Customer Name </th>
+                <th className="px-6 py-4 font-medium">Numbers of Orders</th>
+              </tr>
+            </thead>
+            <tbody className="max-h-[70vh] h-[70vh] overflow-auto">
+              {users?.customers?.map((user: Customer) => {
+                return (
+                  <tr key={user?.customerId}>
+                    <td className="px-6 py-4 border-b">{user?.customerId}</td>
+                    <td className="px-6 py-4 border-b">{user?.customerName}</td>
+                    <td className="px-6 py-4 border-b">
+                      {user?.numberOfOrders}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
